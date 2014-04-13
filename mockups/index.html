@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Your Website</title>
+	<script src="../libs/jquery-2.1.0.min.js"></script>
+	<link rel="stylesheet" href="../style/css/style.css">
+</head>
+
+<script>
+
+$.fn.preload = function() {
+    this.each(function(){
+        $('<img/>')[0].src = this;
+    });
+}
+
+$(document).ready(function() {
+
+	var bcg = ['../img/01_HD.jpg','../img/02_HD.jpg','../img/03_HD.jpg', '../img/04_HD.jpg', '../img/05_HD.jpg'];	
+	
+	$(bcg).preload();
+
+	//change background every 3 seconds
+	setInterval(function(){
+		var rand = '' + bcg[Math.floor(Math.random() * bcg.length)];
+		console.log(rand);
+		$(".bcg-default").css("background-image", "url('" + rand + "')");
+	},2000);
+
+
+
+
+});
+
+</script>
+
+<body>
+<div class="js-background bcg-default bcg-transition">
+
+	<header>
+		<nav>
+			<ul>
+				<li>Your menu</li>
+			</ul>
+		</nav>
+	</header>
+	
+	<section>
+
+		<article>
+			<header>
+				<h2>Article title</h2>
+				<p>Posted on <time datetime="2009-09-04T16:31:24+02:00">September 4th 2009</time> by <a href="#">Writer</a> - <a href="#comments">6 comments</a></p>
+			</header>
+			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+		</article>
+		
+		<article>
+			<header>
+				<h2>Article title</h2>
+				<p>Posted on <time datetime="2009-09-04T16:31:24+02:00">September 4th 2009</time> by <a href="#">Writer</a> - <a href="#comments">6 comments</a></p>
+			</header>
+			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+		</article>
+		
+	</section>
+
+	<aside>
+		<h2>About section</h2>
+		<p>Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+	</aside>
+
+	<footer>
+		<p>Copyright &copy; Your name</p>
+	</footer>
+
+</div>
+</body>
+
+</html>

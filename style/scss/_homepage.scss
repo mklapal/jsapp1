@@ -1,0 +1,8 @@
+.bcg-default{
+	background: url('../../img/01_HD.jpg') no-repeat 50% 50% white;
+	height:100%;
+}
+
+.bcg-transition{
+	@include transition(all, 1s, ease-in-out);
+}
