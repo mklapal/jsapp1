@@ -6,7 +6,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Your Website</title>
 	<script src="../libs/jquery-2.1.0.min.js"></script>
+	<script src="../libs/jquery-ui-1.10.4.custom.min.js"></script>
+	<script src="../libs/jquery.slimscroll.min.js"></script>
 	<link rel="stylesheet" href="../style/css/style.css">
+	<!--[if !IE]>-->
+	<style type="text/css">
+		body {font-size:16px;}
+	</style>
+	<!--<[endif]-->
 </head>
 
 <script>
@@ -28,10 +35,60 @@ $(document).ready(function() {
 		var rand = '' + bcg[Math.floor(Math.random() * bcg.length)];
 		console.log(rand);
 		$(".bcg-default").css("background-image", "url('" + rand + "')");
-	},2000);
+	},10000);
 
 
+	$( ".js-draggable" ).draggable({ containment: "parent" });
 
+	$('.js-scrollbox').slimScroll({
+	    color: '#00f',
+	    size: '10px',
+	    height: '20em',
+	    alwaysVisible: false
+	});
+
+	//hide content all
+	function hideContent(){ 
+		$('.js-content').hide();
+	}
+
+	//show content
+	function showContent(selector){ 
+		$(selector).show();
+	}
+
+	$(".js-menu li a").click(function() {
+		hideContent();
+		var selector;
+		selector = $(this).attr("href");
+		selector = selector.replace("/","-")
+		selector = selector.substr(1);
+		selector = ".js-" + selector;
+		//console.log(selector);
+		showContent(selector);
+	});
+
+
+	//$(".js-submenu").load("../content/menu.html");
+	//$(".js-content-box")
+	//	.load("../content/content.html")
+	//	.load("../content/content2.html");		
+	var homepageSelector = ".js-kancelar";
+	var jqxhr = $.get( "../content/menu.html", function(data) {
+  		$(".js-submenu").append(data);
+	}).done(function() {
+    	showContent(homepageSelector);
+ 	});
+ 	var jqxhr = $.get( "../content/content.html", function(data) {
+  		$(".js-content-box").append(data);
+	}).done(function() {
+    	showContent(homepageSelector);
+ 	});
+ 	var jqxhr = $.get( "../content/content2.html", function(data) {
+  		$(".js-content-box").append(data);
+	}).done(function() {
+    	showContent(homepageSelector);
+ 	});
 
 });
 
@@ -40,44 +97,49 @@ $(document).ready(function() {
 <body>
 <div class="js-background bcg-default bcg-transition">
 
-	<header>
-		<nav>
-			<ul>
-				<li>Your menu</li>
-			</ul>
-		</nav>
-	</header>
-	
-	<section>
+<div class="draggable-containment">
+<div class="domyjinak-box js-draggable">
 
-		<article>
-			<header>
-				<h2>Article title</h2>
-				<p>Posted on <time datetime="2009-09-04T16:31:24+02:00">September 4th 2009</time> by <a href="#">Writer</a> - <a href="#comments">6 comments</a></p>
-			</header>
-			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-		</article>
-		
-		<article>
-			<header>
-				<h2>Article title</h2>
-				<p>Posted on <time datetime="2009-09-04T16:31:24+02:00">September 4th 2009</time> by <a href="#">Writer</a> - <a href="#comments">6 comments</a></p>
-			</header>
-			<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-		</article>
-		
-	</section>
+	<div class="header-box">
+		<h1>Domyjinak.cz</h1>
+	</div>
 
-	<aside>
-		<h2>About section</h2>
-		<p>Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-	</aside>
+	<div class="menu-box">
+		<ul class="js-menu js-mainmenu">
+			<li><a href="#kancelar">Kancelar</a></li>
+			<li><a href="#projekty">Projekty</a></li>
+			<li><a href="#profese">Nase profese</a></li>
+			<li><a href="#aktuality">Aktuality</a></li>
+		</ul>
 
-	<footer>
+		<div class="js-submenu">
+		</div>
+
+		<ul class="menu-networks">
+			<li>Facebook</li>
+			<li>Kontakt</li>
+			<li>Czech</li>
+			<li>English</li>
+		</ul>
+
+	</div>
+
+	<div class="scroll-box js-scrollbox">
+		<div class="scroll-box-wrapper js-content-box">
+			
+		</div>
+
+	</div>
+
+</div>
+
+	<footer class="footer-box">
 		<p>Copyright &copy; Your name</p>
 	</footer>
 
 </div>
+</div>
+
 </body>
 
 </html>

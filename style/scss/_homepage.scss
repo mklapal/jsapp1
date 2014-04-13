@@ -6,3 +6,28 @@
 .bcg-transition{
 	@include transition(all, 1s, ease-in-out);
 }
+
+
+.domyjinak-box{
+	width:20em;
+	max-height:28em;
+	background:white;
+	margin: 0 0 2em; //because of footer
+
+	.header-box{
+		background:blue;
+	}
+
+	.menu-box{
+		background:yellow;
+	}
+
+	.scroll-box{
+		background:white;
+	}
+
+}
+
+.scroll-box-wrapper{
+	padding:1em;
+}

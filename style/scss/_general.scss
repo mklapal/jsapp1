@@ -5,4 +5,18 @@
 html, body {
   /* Make the body to be as tall as browser window */
   height: 100%;
+  font-size:100%;
+}
+
+.draggable-containment{
+	width:100%;
+	height:100%;
+	padding:1em 1em 0;
+	@include calc("height", "100% - 3em");
+
+
+}
+
+.js-content{
+	display:none;
 }
